@@ -10,8 +10,10 @@ addons:
       - ninja-build
       - libssl-dev
       - autoconf2.13
-      - gcc
+      - gcc-6
 script:
+  - rm /usr/bin/gcc
+  - ln -s /usr/bin/gcc-6 /usr/bin/gcc
   - chmod +x ./Scripts/Install.sh
   - ./Scripts/Install.sh
 deploy:
