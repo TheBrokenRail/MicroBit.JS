@@ -1,0 +1,13 @@
+addons:
+  apt:
+    packages:
+      - python-setuptools
+      - cmake
+      - build-essential
+      - ninja-build
+      - python-dev
+      - libffi-dev
+      - libssl-dev
+      - python3-dev
+script:
+  - sh ./Scripts/Build.sh
