@@ -15,3 +15,4 @@ make
 
 cd ../../
 pip install yotta
+yotta target bbc-microbit-classic-gcc
