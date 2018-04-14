@@ -1,24 +1,4 @@
-sudo: required
-addons:
-  apt:
-    sources:
-      - ubuntu-toolchain-r-test
-    packages:
-      - python-setuptools
-      - cmake
-      - build-essential
-      - ninja-build
-      - libssl-dev
-      - autoconf2.13
-      - gcc-6
-      - g++-6
-      - srecord
 script:
-  - sudo rm /usr/bin/gcc
-  - sudo ln -s /usr/bin/gcc-6 /usr/bin/gcc
-  - sudo rm /usr/bin/g++
-  - sudo ln -s /usr/bin/g++-6 /usr/bin/g++
-  - sudo ln -s /usr/bin/python3 /usr/bin/python3.6
   - chmod +x ./Scripts/Install.sh
   - ./Scripts/Install.sh
 deploy:
