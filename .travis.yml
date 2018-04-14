@@ -1,6 +1,8 @@
 sudo: required
 addons:
   apt:
+    sources:
+      - ubuntu-toolchain-r-test
     packages:
       - python-setuptools
       - cmake
