@@ -6,7 +6,7 @@ wget -O bootstrap.py https://hg.mozilla.org/mozilla-central/raw-file/default/pyt
 git clone --depth 1 https://github.com/mozilla/gecko-dev.git
 
 cd gecko-dev/js/src
-autoconf-2.13
+autoconf
 
 mkdir ../../../Build/SpiderMonkey
 cd ../../../Build/SpiderMonkey
