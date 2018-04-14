@@ -12,6 +12,7 @@ addons:
       - autoconf2.13
       - gcc-6
       - g++-6
+      - srecord
 script:
   - sudo rm /usr/bin/gcc
   - sudo ln -s /usr/bin/gcc-6 /usr/bin/gcc
