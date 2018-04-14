@@ -7,5 +7,5 @@ addons:
       - ninja-build
       - libssl-dev
 script:
-  - chmod -x ./Scripts/Build.sh
-  - ./Scripts/Build.sh
+  - chmod -x ./Scripts/Install.sh
+  - ./Scripts/Install.sh
