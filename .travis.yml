@@ -8,7 +8,7 @@ addons:
       - ninja-build
       - libssl-dev
       - autoconf2.13
-      - gcc6.1
+      - gcc-6
 script:
   - chmod +x ./Scripts/Install.sh
   - ./Scripts/Install.sh
