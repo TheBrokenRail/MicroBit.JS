@@ -1,3 +1,4 @@
+sudo: required
 script:
   - chmod +x ./Scripts/Install.sh
   - ./Scripts/Install.sh
