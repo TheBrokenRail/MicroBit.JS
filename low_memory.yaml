@@ -5,8 +5,8 @@ DUK_USE_BUFFEROBJECT_SUPPORT: false
 
 DUK_USE_REGEXP_SUPPORT: false
 
-DUK_USE_REFERENCE_COUNTING: true
-DUK_USE_DOUBLE_LINKED_HEAP: true
+DUK_USE_REFERENCE_COUNTING: false
+DUK_USE_DOUBLE_LINKED_HEAP: false
 
 # Consider to reduce code footprint at the expense of less safeguards against
 # bugs in calling C code
