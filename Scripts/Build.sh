@@ -6,7 +6,8 @@ mkdir Build
 mkdir Source/include
 
 git clone --depth=1 https://github.com/cesanta/mjs.git
-cp -r mjs/. Source/include
+cp mjs/mjs.c Source/include
+cp mjs/mjs.h Source/include
 
 sudo pip install yotta
 yotta target bbc-microbit-classic-gcc
