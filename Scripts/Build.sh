@@ -9,7 +9,7 @@ wget http://dev.mujs.com/downloads/mujs-1.0.3.tar.xz
 tar xvfJ mujs-1.0.3.tar.xz
 cd mujs-1.0.3
 make
-dir build
+dir build/release
 cd ../
 
 sudo pip install yotta
