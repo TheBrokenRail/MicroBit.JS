@@ -10,7 +10,7 @@ void displayScroll(char *x) {
 
 void *my_dlsym(void *handle, const char *name) {
   if (strcmp(name, "displayScroll") == 0) {
-    return displayScroll;
+    return *displayScroll;
   }
   return NULL;
 }
