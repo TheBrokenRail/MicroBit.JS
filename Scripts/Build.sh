@@ -11,7 +11,5 @@ cp mjs/mjs.h Source/include
 
 sudo pip install yotta
 yotta target bbc-microbit-classic-gcc
-echo $CXXFLAGS
-export CXXFLAGS=-fpermissive
 yotta build
 cp build/bbc-microbit-classic-gcc/Source/MicroBit-JS-combined.hex Build
