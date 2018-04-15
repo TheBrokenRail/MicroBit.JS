@@ -1,12 +1,15 @@
 sudo: required
 addons:
   apt:
+    sources:
+      - sourceline: 'ppa:team-gcc-arm-embedded/ppa'
     packages:
       - python-setuptools
       - cmake
       - ninja-build
       - libssl-dev
       - srecord
+      - gcc-arm-none-eabi
 script:
   - chmod +x ./Scripts/Build.sh
   - ./Scripts/Build.sh
