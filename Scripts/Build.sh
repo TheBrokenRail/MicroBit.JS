@@ -10,10 +10,10 @@ tar xvfJ duktape-2.2.0.tar.xz
 cd duktape-2.2.0
 rm -rf src-custom
 python tools/configure.py --output-directory ../Build/Duktape
-cp -a Build/Duktape/. ./Source
+cp -r Build/Duktape/. ./Source
 cd ../
 
 sudo pip install yotta
 yotta target bbc-microbit-classic-gcc
 yotta build
-cp -a build/bbc-microbit-classic-gcc/Source/. Build
+cp -r build/bbc-microbit-classic-gcc/Source/. Build
