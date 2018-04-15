@@ -9,9 +9,8 @@ addons:
       - ninja-build
       - libssl-dev
       - srecord
-      - gcc-arm-none-eabi
+      - gcc-arm-embedded
       - libnewlib-arm-none-eabi
-      - libstdc++
 script:
   - chmod +x ./Scripts/Build.sh
   - ./Scripts/Build.sh
