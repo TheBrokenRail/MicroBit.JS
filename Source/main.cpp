@@ -4,7 +4,7 @@
 
 MicroBit uBit;
 
-void displayScroll(char* x) {
+void *displayScroll(char x) {
   uBit.display.scroll(x);
 }
 
