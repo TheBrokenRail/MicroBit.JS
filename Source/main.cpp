@@ -1,5 +1,5 @@
 #include "MicroBit.h"
-#include "include/dukglue/dukglue.h"
+#include "include/duktape.h"
 
 MicroBit uBit;
 
