@@ -1,7 +1,7 @@
 sudo: required
 script:
-  - chmod +x ./Scripts/Install.sh
-  - ./Scripts/Install.sh
+  - chmod +x ./Scripts/Build.sh
+  - ./Scripts/Build.sh
 deploy:
   provider: pages
   skip-cleanup: true
