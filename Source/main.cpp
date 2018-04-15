@@ -4,7 +4,7 @@
 
 MicroBit uBit;
 
-void *displayScroll(char x) {
+void *displayScroll(char *x) {
   uBit.display.scroll(x);
 }
 
@@ -20,7 +20,7 @@ int main()
 
     struct mjs *mjs = mjs_create();
     mjs_set_ffi_resolver(mjs, getFFI);
-    mjs_exec(mjs, "let micro = {}; micro.displayScroll = ffi('void displayScroll(char)'); micro.displayScroll('1234')", NULL);
+    mjs_exec(mjs, "let micro = {}; micro.displayScroll = ffi('void displayScroll(char *)'); micro.displayScroll('1234')", NULL);
 
     // If main exits, there may still be other fibers running or registered event handlers etc.
     // Simply release this fiber, which will mean we enter the scheduler. Worse case, we then
