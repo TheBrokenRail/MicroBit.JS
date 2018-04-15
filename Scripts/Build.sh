@@ -8,7 +8,7 @@ mkdir Source/include
 wget http://duktape.org/duktape-2.2.0.tar.xz
 tar xvfJ duktape-2.2.0.tar.xz
 cd duktape-2.2.0
-python tools/configure.py --output-directory ../Source/include --option-file config/samples/low_memory.yaml
+python tools/configure.py --output-directory ../Source/include --option-file config/examples/low_memory.yaml
 cd ../
 
 sudo pip install yotta
