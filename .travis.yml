@@ -4,11 +4,9 @@ addons:
     packages:
       - python-setuptools
       - cmake
-      - build-essential
       - ninja-build
-      - python-dev
-      - libffi-dev
       - libssl-dev
+      - srecord
 script:
   - chmod +x ./Scripts/Build.sh
   - ./Scripts/Build.sh
