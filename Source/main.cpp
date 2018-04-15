@@ -8,9 +8,9 @@ void displayScroll(char *x) {
   uBit.display.scroll(x);
 }
 
-void *my_dlsym(void *handle, const char *name) {
+void *ffiResolver(void *handle, const char *name) {
   if (strcmp(name, "displayScroll") == 0) {
-    return *displayScroll;
+    return (void *)displayScroll;
   }
   return NULL;
 }
@@ -20,7 +20,7 @@ int main() {
     uBit.init();
 
     struct mjs *mjs = mjs_create();
-    mjs_set_ffi_resolver(mjs, my_dlsym);
+    mjs_set_ffi_resolver(mjs, ffiResolver);
     mjs_exec(mjs, "let micro = {}; micro.displayScroll = ffi('void displayScroll(char *)'); micro.displayScroll('1234')", NULL);
 
     // If main exits, there may still be other fibers running or registered event handlers etc.
