@@ -5,11 +5,11 @@ set -e
 mkdir Build
 mkdir Source/include
 
-wget http://duktape.org/duktape-2.2.0.tar.xz
-tar xvfJ duktape-2.2.0.tar.xz
-cd duktape-2.2.0
-rm -rf src-custom
-python tools/configure.py --output-directory ../Source/include
+wget http://dev.mujs.com/downloads/mujs-1.0.3.tar.xz
+tar xvfJ http://dev.mujs.com/downloads/mujs-1.0.3.tar.xz
+cd mujs-1.0.3
+make
+dir build
 cd ../
 
 sudo pip install yotta
