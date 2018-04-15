@@ -12,9 +12,6 @@ rm -rf src-custom
 python tools/configure.py --output-directory ../Source/include
 cd ../
 
-git clone --depth=1 https://github.com/Aloshi/dukglue.git
-cp -r dukglue/include/. Source/include
-
 sudo pip install yotta
 yotta target bbc-microbit-classic-gcc
 yotta build
