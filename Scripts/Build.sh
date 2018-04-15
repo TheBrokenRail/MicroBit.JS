@@ -14,7 +14,7 @@ cd ../
 
 sudo pip install yotta
 yotta target bbc-microbit-classic-gcc
-echo $CFFLAGS
-export CFFLAGS="-fdata-sections -ffunction-sections -Wl,--gc-sections"
+echo $CPPFLAGS
+export CPPFLAGS="-fdata-sections -ffunction-sections -Wl,--gc-sections"
 yotta build
 cp build/bbc-microbit-classic-gcc/Source/MicroBit.JS-combined.hex Build
