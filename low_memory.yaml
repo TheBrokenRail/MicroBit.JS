@@ -101,8 +101,8 @@ DUK_USE_CACHE_CATCHER: false
 
 # Consider using external strings, see doc/low_memory.rst.
 DUK_USE_EXTERNAL_STRINGS: true
-DUK_USE_EXTSTR_INTERN_CHECK
-DUK_USE_EXTSTR_FREE
+DUK_USE_EXTSTR_INTERN_CHECK: true
+DUK_USE_EXTSTR_FREE: true
 
 # Consider removing Node.js Buffer and ES2015 typed array support if not
 # needed (about 10 kB code footprint difference on x64)
