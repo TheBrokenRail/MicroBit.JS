@@ -10,7 +10,6 @@ addons:
       - libssl-dev
       - srecord
       - gcc-arm-embedded
-      - libnewlib-arm-none-eabi
 script:
   - chmod +x ./Scripts/Build.sh
   - ./Scripts/Build.sh
