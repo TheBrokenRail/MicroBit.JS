@@ -5,11 +5,8 @@ set -e
 mkdir Build
 mkdir Source/include
 
-wget http://duktape.org/duktape-2.2.0.tar.xz
-tar xvfJ duktape-2.2.0.tar.xz
-cd duktape-2.2.0
-python tools/configure.py --output-directory ../Source/include --option-file ../low_memory.yaml
-cd ../
+git clone --depth=1 https://github.com/cesanta/mjs.git
+cp mjs/. Source/include
 
 sudo pip install yotta
 yotta target bbc-microbit-classic-gcc
