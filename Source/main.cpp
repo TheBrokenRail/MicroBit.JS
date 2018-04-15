@@ -9,12 +9,13 @@ void displayScroll(char *x) {
 }
 
 void *getFFI(void *handle, const char *name) {
-  if (strcmp(name, "displayScroll") == 0) return displayScroll;
+  if (strcmp(name, "displayScroll") == 0) {
+    return displayScroll;
+  }
   return NULL;
 }
 
-int main()
-{
+int main() {
     // Initialise the micro:bit runtime.
     uBit.init();
 
