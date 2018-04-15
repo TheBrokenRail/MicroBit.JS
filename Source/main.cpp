@@ -1,5 +1,5 @@
 #include "MicroBit.h"
-#include "mjs.h"
+#include "include/mjs.h"
 #include <cstring>
 
 MicroBit uBit;
