@@ -1,4 +1,14 @@
 sudo: required
+addons:
+  apt:
+    packages:
+      - python-setuptools
+      - cmake
+      - build-essential
+      - ninja-build
+      - python-dev
+      - libffi-dev
+      - libssl-dev
 script:
   - chmod +x ./Scripts/Build.sh
   - ./Scripts/Build.sh
