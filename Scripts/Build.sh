@@ -3,7 +3,7 @@
 set -e
 
 echo "Updating PIP"
-pip install --upgrade pip
+sudo pip install --upgrade pip
 
 echo "Generating C++ Source for JS File"
 printf 'const char *jsSource = R"~~~~('"$(cat Source/main.js)"')~~~~";' > Source/JSSource.h
