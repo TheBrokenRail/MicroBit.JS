@@ -15,3 +15,4 @@ sudo pip install yotta
 yotta target bbc-microbit-classic-gcc
 yotta build
 cp build/bbc-microbit-classic-gcc/Source/MicroBit-JS-combined.hex Build
+yotta test
