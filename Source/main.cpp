@@ -45,11 +45,11 @@ uBit.display.scroll = ffi('void displayScroll(char *)');
 uBit.serial = {};
 uBit.serial.send = ffi('int serialSend(char *)');
 uBit.serial.read = ffi('char *serialRead(int)');
-load = null;
-print = null;
-ffi = null;
-ffi_cb_free = null;
-getMJS = null;
+load = undefined;
+print = undefined;
+ffi = undefined;
+ffi_cb_free = undefined;
+getMJS = undefined;
 )~~~~";
 
 int main() {
