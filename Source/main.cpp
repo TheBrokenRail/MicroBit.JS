@@ -38,13 +38,16 @@ void *ffiResolver(void *handle, const char *name) {
   return NULL;
 }
 
-std::string initJS = R"~~~~(let uBit = {};
-uBit.sleep = ffi('void sleep(int)');
-uBit.display = {};
-uBit.display.scroll = ffi('void displayScroll(char *)');
-uBit.serial = {};
-uBit.serial.send = ffi('int serialSend(char *)');
-uBit.serial.read = ffi('char *serialRead(int)');
+std::string initJS = R"~~~~(let uBit = {
+  sleep: ffi('void sleep(int)'),
+  display: {
+    scroll: ffi('void displayScroll(char *)')
+  },
+  serial: {
+    send: ffi('int serialSend(char *)'),
+    read: ffi('char *serialRead(int)')
+  }
+};
 load = undefined;
 print = undefined;
 ffi = undefined;
