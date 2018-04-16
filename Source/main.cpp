@@ -28,8 +28,8 @@ void *ffiResolver(void *handle, const char *name) {
   if (strcmp(name, "sleep") == 0) {
     return (void *)uBitSleep;
   }
-  if (strcmp(name, "serialWrite") == 0) {
-    return (void *)uBitSerialWrite;
+  if (strcmp(name, "serialSend") == 0) {
+    return (void *)uBitSerialSend;
   }
   if (strcmp(name, "serialRead") == 0) {
     return (void *)uBitSerialRead;
@@ -37,12 +37,12 @@ void *ffiResolver(void *handle, const char *name) {
   return NULL;
 }
 
-const char *initJS = R"~~~~(let uBit = {};
+char *initJS = R"~~~~(let uBit = {};
 uBit.sleep = ffi('void sleep(int)');
 uBit.display = {};
 uBit.display.scroll = ffi('void displayScroll(char *)');
 uBit.serial = {};
-uBit.serial.write = ffi('void serialWrite(char *)');
+uBit.serial.send = ffi('void serialSend(char *)');
 uBit.serial.read = ffi('void serialRead(int)');
 Load = null;
 print = null;
@@ -58,7 +58,7 @@ int main() {
   mjs_err_t err = mjs_exec(mjs, strcat(initJS, jsSource), NULL);
   if (err) {
     const char *errStr = mjs_strerror(mjs, err);
-    uBit.serial.write(errStr);
+    uBit.serial.send(errStr);
   }
 
   // If main exits, there may still be other fibers running or registered event handlers etc.
