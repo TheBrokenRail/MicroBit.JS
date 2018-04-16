@@ -1,1 +1,1 @@
-micro.displayScroll('1234');
+uBit.display.scroll('1234');
