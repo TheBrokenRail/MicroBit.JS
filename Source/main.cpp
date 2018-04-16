@@ -22,7 +22,8 @@ int main() {
 
     struct mjs *mjs = mjs_create();
     mjs_set_ffi_resolver(mjs, ffiResolver);
-    mjs_exec(mjs, strcat("let micro = {}; micro.displayScroll = ffi('void displayScroll(char *)'); ", (const char)Source_main_js), NULL);
+    const char str[] = "let micro = {}; micro.displayScroll = ffi('void displayScroll(char *)'); ";
+    mjs_exec(mjs, strcat(str, (const char)Source_main_js), NULL);
 
     // If main exits, there may still be other fibers running or registered event handlers etc.
     // Simply release this fiber, which will mean we enter the scheduler. Worse case, we then
