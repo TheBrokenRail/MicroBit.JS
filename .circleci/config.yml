@@ -5,13 +5,13 @@ jobs:
       - image: circleci/buildpack-deps:14.04-curl-browsers
     steps:
       - run:
-          command: apt-get install --force-yes add-apt-repository
+          command: sudo apt-get install --force-yes add-apt-repository
       - run:
-          command: add-apt-repository ppa:team-gcc-arm-embedded/ppa
+          command: sudo add-apt-repository ppa:team-gcc-arm-embedded/ppa
       - run:
-          command: apt-get update
+          command: sudo apt-get update
       - run:
-          command: apt-get install --force-yes sudo python-setuptools cmake build-essential ninja-build python-dev libffi-dev libssl-dev srecord gcc-arm-embedded
+          command: sudo apt-get install --force-yes python-setuptools cmake build-essential ninja-build python-dev libffi-dev libssl-dev srecord gcc-arm-embedded
       - run:
           command: easy_install pip
       - checkout
