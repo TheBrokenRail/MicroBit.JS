@@ -11,5 +11,7 @@ jobs:
       - image: debian:stretch
     steps:
       - checkout
-      - chmod +x Scripts/Build.sh
-      - ./Scripts/Build.sh
+      - run:
+          command: chmod +x Scripts/Build.sh
+      - run:
+          command: ./Scripts/Build.sh
