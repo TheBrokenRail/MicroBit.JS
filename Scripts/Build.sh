@@ -2,7 +2,7 @@
 
 set -e
 
-xxd -i Source/main.js > Source/JSSource.h
+printf 'std::string dataBaseLeaf = R"~~~~(\n'"$(cat Source/main.js)"'\n)~~~~";' > Source/JSSource.h
 
 mkdir Build
 mkdir Source/include
