@@ -5,12 +5,20 @@
 
 MicroBit uBit;
 
+void uBitDisplayScroll(char *x) {
+  uBit.display.scroll(x);
+}
+
+void uBitSleep(int x) {
+  uBit.sleep(x);
+}
+
 void *ffiResolver(void *handle, const char *name) {
   if (strcmp(name, "displayScroll") == 0) {
-    return (void *)uBit.display.scroll;
+    return (void *)uBitDisplayScroll;
   }
   if (strcmp(name, "sleep") == 0) {
-    return (void *)uBit.sleep;
+    return (void *)uBitSleep;
   }
   return NULL;
 }
