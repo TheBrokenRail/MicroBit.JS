@@ -45,7 +45,7 @@ uBit.display.scroll = ffi('void displayScroll(char *)');
 uBit.serial = {};
 uBit.serial.send = ffi('void serialSend(char *)');
 uBit.serial.read = ffi('void serialRead(int)');
-Load = null;
+load = null;
 print = null;
 ffi = null;
 )~~~~";
