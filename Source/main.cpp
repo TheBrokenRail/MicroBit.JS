@@ -56,7 +56,7 @@ int main() {
 
   struct mjs *mjs = mjs_create();
   mjs_set_ffi_resolver(mjs, ffiResolver);
-  mjs_err_t err = mjs_exec(mjs, strcat(initJS.c_str(), jsSource.c_str()), NULL);
+  mjs_err_t err = mjs_exec(mjs, strcat((char *)initJS.c_str(), jsSource.c_str()), NULL);
   if (err) {
     const char *errStr = mjs_strerror(mjs, err);
     uBit.serial.send(errStr);
