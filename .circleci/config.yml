@@ -4,18 +4,11 @@ jobs:
     docker:
       - image: circleci/buildpack-deps:14.04-curl-browsers
     steps:
-      - run:
-          command: sudo apt-get install --force-yes python-software-properties
-      - run:
-          command: sudo add-apt-repository ppa:team-gcc-arm-embedded/ppa
-      - run:
-          command: sudo apt-get update
-      - run:
-          command: sudo apt-get install --force-yes python-setuptools cmake build-essential ninja-build python-dev libffi-dev libssl-dev srecord gcc-arm-embedded
-      - run:
-          command: easy_install pip
+      - run: sudo apt-get install --force-yes software-properties-common
+      - run: sudo add-apt-repository ppa:team-gcc-arm-embedded/ppa
+      - run: sudo apt-get update
+      - run: sudo apt-get install --force-yes python-setuptools cmake build-essential ninja-build python-dev libffi-dev libssl-dev srecord gcc-arm-embedded
+      - run: easy_install pip
       - checkout
-      - run:
-          command: chmod +x Scripts/Build.sh
-      - run:
-          command: ./Scripts/Build.sh
+      - run: chmod +x Scripts/Build.sh
+      - run: ./Scripts/Build.sh
