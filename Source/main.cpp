@@ -1,6 +1,7 @@
+#include <cstring>
 #include "MicroBit.h"
 #include "include/mjs.h"
-#include <cstring>
+#include "JSString.h"
 
 MicroBit uBit;
 
@@ -21,7 +22,7 @@ int main() {
 
     struct mjs *mjs = mjs_create();
     mjs_set_ffi_resolver(mjs, ffiResolver);
-    mjs_exec(mjs, "let micro = {}; micro.displayScroll = ffi('void displayScroll(char *)'); micro.displayScroll('1234')", NULL);
+    mjs_exec(mjs, "let micro = {}; micro.displayScroll = ffi('void displayScroll(char *)'); " + JSString, NULL);
 
     // If main exits, there may still be other fibers running or registered event handlers etc.
     // Simply release this fiber, which will mean we enter the scheduler. Worse case, we then
