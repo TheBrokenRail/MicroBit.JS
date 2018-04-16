@@ -13,6 +13,14 @@ void uBitSleep(int x) {
   uBit.sleep(x);
 }
 
+void uBitSerialSend(char *x) {
+  uBit.serial.send(x);
+}
+
+void uBitSerialRead(int x) {
+  uBit.serial.read(x);
+}
+
 void *ffiResolver(void *handle, const char *name) {
   if (strcmp(name, "displayScroll") == 0) {
     return (void *)uBitDisplayScroll;
@@ -20,8 +28,23 @@ void *ffiResolver(void *handle, const char *name) {
   if (strcmp(name, "sleep") == 0) {
     return (void *)uBitSleep;
   }
+  if (strcmp(name, "serialWrite") == 0) {
+    return (void *)uBitSerialWrite;
+  }
+  if (strcmp(name, "serialRead") == 0) {
+    return (void *)uBitSerialRead;
+  }
   return NULL;
 }
+
+const char *initJS = R"~~~~(let uBit = {};
+uBit.sleep = ffi('void sleep(int)');
+uBit.display = {};
+uBit.display.scroll = ffi('void displayScroll(char *)');
+uBit.serial = {};
+uBit.serial.write = ffi('void serialWrite(char *)');
+uBit.serial.read = ffi('void serialRead(int)');
+)~~~~";
 
 int main() {
     // Initialise the micro:bit runtime.
@@ -29,8 +52,7 @@ int main() {
 
     struct mjs *mjs = mjs_create();
     mjs_set_ffi_resolver(mjs, ffiResolver);
-    char str[] = "let uBit = {}; uBit.sleep = ffi('void sleep(int)'); uBit.display = {}; uBit.display.scroll = ffi('void displayScroll(char *)'); ";
-    mjs_exec(mjs, strcat(str, jsSource.c_str()), NULL);
+    mjs_exec(mjs, strcat(initJS, jsSource), NULL);
 
     // If main exits, there may still be other fibers running or registered event handlers etc.
     // Simply release this fiber, which will mean we enter the scheduler. Worse case, we then
