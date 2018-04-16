@@ -3,7 +3,6 @@
 set -e
 
 xxd -i Source/main.js > Source/JSSource.h
-cat Source/JSSource.h
 
 mkdir Build
 mkdir Source/include
