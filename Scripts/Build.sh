@@ -17,7 +17,7 @@ cp mjs/mjs.c Source/include
 cp mjs/mjs.h Source/include
 
 echo "Installing Yotta"
-sudo pip install yotta
+sudo pip install yotta -v
 echo "Setting Yotta Target"
 yotta target bbc-microbit-classic-gcc
 echo "Building Project"
