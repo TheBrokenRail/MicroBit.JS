@@ -52,7 +52,11 @@ int main() {
 
     struct mjs *mjs = mjs_create();
     mjs_set_ffi_resolver(mjs, ffiResolver);
-    mjs_exec(mjs, strcat(initJS, jsSource), NULL);
+    mjs_err_t err = mjs_exec(mjs, strcat(initJS, jsSource), NULL);
+    if (err) {
+      const char *errStr = mjs_strerror(mjs, err);
+      uBit.serial.write(errStr);
+    }
 
     // If main exits, there may still be other fibers running or registered event handlers etc.
     // Simply release this fiber, which will mean we enter the scheduler. Worse case, we then
