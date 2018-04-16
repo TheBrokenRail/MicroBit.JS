@@ -15,11 +15,11 @@ void uBitSleep(int x) {
 }
 
 void uBitSerialSend(char *x) {
-  uBit.serial.send(x);
+  mjs_return(mjs, uBit.serial.send(x));
 }
 
 void uBitSerialRead(int x) {
-  uBit.serial.read(x);
+  mjs_return(mjs, uBit.serial.read(x));
 }
 
 void *ffiResolver(void *handle, const char *name) {
@@ -43,11 +43,13 @@ uBit.sleep = ffi('void sleep(int)');
 uBit.display = {};
 uBit.display.scroll = ffi('void displayScroll(char *)');
 uBit.serial = {};
-uBit.serial.send = ffi('void serialSend(char *)');
-uBit.serial.read = ffi('void serialRead(int)');
+uBit.serial.send = ffi('int serialSend(char *)');
+uBit.serial.read = ffi('char *serialRead(int)');
 load = null;
 print = null;
 ffi = null;
+ffi_cb_free = null;
+getMJS = null;
 )~~~~";
 
 int main() {
