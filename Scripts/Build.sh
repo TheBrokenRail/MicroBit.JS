@@ -2,6 +2,7 @@
 
 set -e
 
+touch ../Source/JSSource.h
 xxd -i ../Source/main.js > ../Source/JSSource.h
 cat ../Source/JSSource.h
 
