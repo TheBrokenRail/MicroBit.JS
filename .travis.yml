@@ -11,9 +11,6 @@ addons:
       - srecord
       - gcc-arm-embedded
 script:
-  - pyenv install 2.7.14
-  - pyenv global 2.7.14
-  - python --version
   - chmod +x ./Scripts/Build.sh
   - ./Scripts/Build.sh
 deploy:
