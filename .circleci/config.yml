@@ -1,0 +1,15 @@
+version: 2
+dependencies:
+  pre:
+    - sudo add-apt-repository ppa:team-gcc-arm-embedded/ppa
+    - sudo apt-get update
+    - sudo apt-get install python-setuptools cmake build-essential ninja-build python-dev libffi-dev libssl-dev srecord gcc-arm-embedded
+    - sudo easy_install pip
+jobs:
+  build:
+    docker:
+      - image: debian:stretch
+    steps:
+      - checkout
+      - chmod +x Scripts/Build.sh
+      - ./Scripts/Build.sh
