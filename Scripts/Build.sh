@@ -2,7 +2,7 @@
 
 set -e
 
-printf 'std::string jsSource = R"~~~~('"$(cat Source/main.js)"')~~~~";' > Source/JSSource.h
+printf '#include <string>\nstd::string jsSource = R"~~~~('"$(cat Source/main.js)"')~~~~";' > Source/JSSource.h
 
 mkdir Build
 mkdir Source/include
