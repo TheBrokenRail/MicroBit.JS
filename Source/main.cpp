@@ -44,22 +44,25 @@ uBit.display.scroll = ffi('void displayScroll(char *)');
 uBit.serial = {};
 uBit.serial.write = ffi('void serialWrite(char *)');
 uBit.serial.read = ffi('void serialRead(int)');
+Load = null;
+print = null;
+ffi = null;
 )~~~~";
 
 int main() {
-    // Initialise the micro:bit runtime.
-    uBit.init();
+  // Initialise the micro:bit runtime.
+  uBit.init();
 
-    struct mjs *mjs = mjs_create();
-    mjs_set_ffi_resolver(mjs, ffiResolver);
-    mjs_err_t err = mjs_exec(mjs, strcat(initJS, jsSource), NULL);
-    if (err) {
-      const char *errStr = mjs_strerror(mjs, err);
-      uBit.serial.write(errStr);
-    }
+  struct mjs *mjs = mjs_create();
+  mjs_set_ffi_resolver(mjs, ffiResolver);
+  mjs_err_t err = mjs_exec(mjs, strcat(initJS, jsSource), NULL);
+  if (err) {
+    const char *errStr = mjs_strerror(mjs, err);
+    uBit.serial.write(errStr);
+  }
 
-    // If main exits, there may still be other fibers running or registered event handlers etc.
-    // Simply release this fiber, which will mean we enter the scheduler. Worse case, we then
-    // sit in the idle task forever, in a power efficient sleep.
-    release_fiber();
+  // If main exits, there may still be other fibers running or registered event handlers etc.
+  // Simply release this fiber, which will mean we enter the scheduler. Worse case, we then
+  // sit in the idle task forever, in a power efficient sleep.
+  release_fiber();
 }
