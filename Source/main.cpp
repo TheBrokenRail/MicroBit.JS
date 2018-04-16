@@ -14,12 +14,12 @@ void uBitSleep(int x) {
   uBit.sleep(x);
 }
 
-void uBitSerialSend(char *x) {
-  mjs_return(mjs, uBit.serial.send(x));
+int uBitSerialSend(char *x) {
+  return uBit.serial.send(x);
 }
 
-void uBitSerialRead(int x) {
-  mjs_return(mjs, uBit.serial.read(x));
+char *uBitSerialRead(int x) {
+  return uBit.serial.read(x);
 }
 
 void *ffiResolver(void *handle, const char *name) {
