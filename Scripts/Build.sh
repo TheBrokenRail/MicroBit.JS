@@ -3,7 +3,7 @@
 set -e
 
 echo "Generating C++ Source for JS File"
-printf 'const char *jsSource = R"~~~~('"$(cat Source/main.js)"')~~~~";' > Source/JSSource.h
+printf '#include <string>\nstd::string jsSource = R"~~~~('"$(cat Source/main.js)"')~~~~";' > Source/JSSource.h
 
 mkdir Build
 mkdir Source/include
