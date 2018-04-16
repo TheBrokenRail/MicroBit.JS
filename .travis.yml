@@ -5,6 +5,7 @@ addons:
       - sourceline: 'ppa:team-gcc-arm-embedded/ppa'
     packages:
       - python-setuptools
+      - python2.7
       - cmake
       - ninja-build
       - libssl-dev
