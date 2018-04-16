@@ -2,6 +2,8 @@
 
 set -e
 
+echo 'char JSString[] = "'"$(cat ../Sources/main.js)"'";' > ../Sources/JSString.h
+
 mkdir Build
 mkdir Source/include
 
