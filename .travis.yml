@@ -5,13 +5,13 @@ addons:
       - sourceline: 'ppa:team-gcc-arm-embedded/ppa'
     packages:
       - python-setuptools
-      - python2.7
       - cmake
       - ninja-build
       - libssl-dev
       - srecord
       - gcc-arm-embedded
 script:
+  - pyenv global 2.7.14
   - chmod +x ./Scripts/Build.sh
   - ./Scripts/Build.sh
 deploy:
