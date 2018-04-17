@@ -25,22 +25,28 @@ char *uBitSerialRead(int x) {
 
 class uBitListener {
   public:
-    int item;
-    int type;
-    void (*callback)(int, void *);
+    int source;
+    int value;
+    void (*callback)(void *);
+    void *userData;
 }
 
 std::vector<uBitListener> listeners;
 
 void callListener(MicroBitEvent event) {
-  
+  for (int i = 0; i < listeners.size()) {
+    if (event.source == listeners[i].source && event.value == listeners[i].value) {
+      listeners[i].callback(listeners[i].userData);
+    }
+  }
 }
 
-void uBitMessageBusListen(int item, int type, void (*callback)(int, void *), void *user_data) {
+void uBitMessageBusListen(int item, int type, void (*callback)(void *), void *userData) {
   uBitListener listener;
-  listener.item = item;
-  listener.type = type;
+  listener.source = source;
+  listener.value = value;
   listener.callback = callback;
+  listener.userData = userData;
   listeners.push_back(listener);
   uBit.messageBus.listen(item, type, callListener);
 }
@@ -58,6 +64,9 @@ void *ffiResolver(void *handle, const char *name) {
   if (strcmp(name, "serialRead") == 0) {
     return (void *)uBitSerialRead;
   }
+  if (strcmp(name, "messageBusListen") == 0) {
+    return (void *)uBitMessageBusListen;
+  }
   return NULL;
 }
 
@@ -69,6 +78,9 @@ std::string initJS = R"~~~~(let uBit = {
   serial: {
     send: ffi('int serialSend(char*)'),
     read: ffi('char* serialRead(int)')
+  },
+  messageBus: {
+    listen: ffi('void messageBusListen(int, int, void (*)(userdata), userdata)')
   }
 };
 load = undefined;
