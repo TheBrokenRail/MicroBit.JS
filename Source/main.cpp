@@ -1,4 +1,5 @@
 #include <string>
+#include <vector>
 #include <cstring>
 #include "MicroBit.h"
 #include "include/mjs.h"
@@ -22,6 +23,28 @@ char *uBitSerialRead(int x) {
   return (char *)uBit.serial.read(x).toCharArray();
 }
 
+class Listener {
+  public:
+    int item;
+    int type;
+    void (*callback)(int, void *);
+}
+
+std::vector<Listener> listeners;
+
+void callListener(MicroBitEvent event) {
+  
+}
+
+void uBitMessageBusListen(int item, int type, void (*callback)(int, void *), void *user_data) {
+  Listener listener;
+  listener.item = item;
+  listener.type = type;
+  listener.callback = callback;
+  listeners.push_back(listener);
+  uBit.messageBus.listen(item, type, callListener);
+}
+
 void *ffiResolver(void *handle, const char *name) {
   if (strcmp(name, "displayScroll") == 0) {
     return (void *)uBitDisplayScroll;
@@ -41,11 +64,11 @@ void *ffiResolver(void *handle, const char *name) {
 std::string initJS = R"~~~~(let uBit = {
   sleep: ffi('void sleep(int)'),
   display: {
-    scroll: ffi('void displayScroll(char *)')
+    scroll: ffi('void displayScroll(char*)')
   },
   serial: {
-    send: ffi('int serialSend(char *)'),
-    read: ffi('char *serialRead(int)')
+    send: ffi('int serialSend(char*)'),
+    read: ffi('char* serialRead(int)')
   }
 };
 load = undefined;
