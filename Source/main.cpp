@@ -29,7 +29,7 @@ class uBitListener {
     int value;
     void (*callback)(void *);
     void *userData;
-}
+};
 
 std::vector<uBitListener> listeners;
 
