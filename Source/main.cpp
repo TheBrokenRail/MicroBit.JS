@@ -22,7 +22,7 @@ char *uBitSerialRead(int x) {
   return uBit.serial.read(x).toCharArray();
 }
 
-void uBitMessageBusListen(int item, int type, void (*callback)(MicroBitEvent, void *)) {
+void uBitMessageBusListen(int item, int type, void (*callback)(MicroBitEvent)) {
   uBit.messageBus.listen(item, type, callback);
 }
 
@@ -55,7 +55,7 @@ std::string initJS = R"~~~~(let uBit = {
     read: ffi('char *serialRead(int)')
   },
   messageBus: {
-    listen: ffi('void messageBusListen(int, int, void (*)(void *, userdata), userdata)')
+    listen: ffi('void messageBusListen(int, int, void (*)(void ))')
   }
 };
 load = undefined;
