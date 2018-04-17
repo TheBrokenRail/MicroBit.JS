@@ -42,7 +42,7 @@ void callListener(MicroBitEvent event) {
 }
 
 void uBitMessageBusListen(int source, int value, void (*callback)(void *), void *userData) {
-  uBitListener listener;
+  uBitListener listener = new uBitListener;
   listener.source = source;
   listener.value = value;
   listener.callback = callback;
