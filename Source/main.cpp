@@ -25,11 +25,11 @@ char *uBitSerialRead(int x) {
 
 class uBitListener {
   public:
-    uBitListener(int source, int value, void (*callback)(void *), void *userData) {
-      this.source = source;
-      this.value = value;
-      this.callback = callback;
-      this.userData = userData;
+    uBitListener(int sourceObj, int valueObj, void (*callbackObj)(void *), void *userDataObj) {
+      source = sourceObj;
+      value = valueObj;
+      callback = callbackObj;
+      userData = userDataObj;
     };
     int source;
     int value;
@@ -48,7 +48,7 @@ void callListener(MicroBitEvent event) {
 }
 
 void uBitMessageBusListen(int source, int value, void (*callback)(void *), void *userData) {
-  uBitListener listener = new uBitListener(source, value, callback, userData);
+  uBitListener listener = uBitListener(source, value, callback, userData);
   listeners.push_back(listener);
   uBit.messageBus.listen(source, value, callListener);
 }
