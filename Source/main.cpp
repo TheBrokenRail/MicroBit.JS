@@ -23,21 +23,21 @@ char *uBitSerialRead(int x) {
   return (char *)uBit.serial.read(x).toCharArray();
 }
 
-class Listener {
+class uBitListener {
   public:
     int item;
     int type;
     void (*callback)(int, void *);
 }
 
-std::vector<Listener> listeners;
+std::vector<uBitListener> listeners;
 
 void callListener(MicroBitEvent event) {
   
 }
 
 void uBitMessageBusListen(int item, int type, void (*callback)(int, void *), void *user_data) {
-  Listener listener;
+  uBitListener listener;
   listener.item = item;
   listener.type = type;
   listener.callback = callback;
