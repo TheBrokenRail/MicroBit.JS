@@ -19,7 +19,11 @@ int uBitSerialSend(char *x) {
 }
 
 char *uBitSerialRead(int x) {
-  return uBit.serial.read(x);
+  return uBit.serial.read(x).toCharArray();
+}
+
+void uBitMessageBusListen(int item, int type, void (*callback)(void *, void *)) {
+  uBit.messageBus.listen(item, type, callback);
 }
 
 void *ffiResolver(void *handle, const char *name) {
@@ -35,6 +39,9 @@ void *ffiResolver(void *handle, const char *name) {
   if (strcmp(name, "serialRead") == 0) {
     return (void *)uBitSerialRead;
   }
+  if (strcmp(name, "messageBusListen") == 0) {
+    return (void *)uBitMessageBusListen;
+  }
   return NULL;
 }
 
@@ -46,6 +53,9 @@ std::string initJS = R"~~~~(let uBit = {
   serial: {
     send: ffi('int serialSend(char *)'),
     read: ffi('char *serialRead(int)')
+  },
+  messageBus: {
+    listen: ffi('void messageBusListen(int, int, void (*)(void *, userdata), userdata)')
   }
 };
 load = undefined;
