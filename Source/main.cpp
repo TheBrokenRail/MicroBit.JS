@@ -34,14 +34,14 @@ class uBitListener {
 std::vector<uBitListener> listeners;
 
 void callListener(MicroBitEvent event) {
-  for (int i = 0; i < listeners.size()) {
+  for (int i = 0; i < listeners.size(); i++) {
     if (event.source == listeners[i].source && event.value == listeners[i].value) {
       listeners[i].callback(listeners[i].userData);
     }
   }
 }
 
-void uBitMessageBusListen(int item, int type, void (*callback)(void *), void *userData) {
+void uBitMessageBusListen(int source, int value, void (*callback)(void *), void *userData) {
   uBitListener listener;
   listener.source = source;
   listener.value = value;
