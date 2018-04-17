@@ -7,7 +7,7 @@
 MicroBit uBit;
 
 void uBitDisplayScroll(char *x) {
-  uBit.display.scroll
+  uBit.display.scroll(x);
 }
 
 void uBitSleep(int x) {
