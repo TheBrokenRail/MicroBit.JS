@@ -22,7 +22,7 @@ char *uBitSerialRead(int x) {
   return uBit.serial.read(x).toCharArray();
 }
 
-void uBitMessageBusListen(int item, int type, void (*callback)(void *, void *)) {
+void uBitMessageBusListen(int item, int type, void (*callback)(MicroBitEvent, void *)) {
   uBit.messageBus.listen(item, type, callback);
 }
 
