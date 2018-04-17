@@ -25,13 +25,19 @@ char *uBitSerialRead(int x) {
 
 class uBitListener {
   public:
+    uBitListener(int source, int value, void (*callback)(void *), void *userData) {
+      this.source = source;
+      this.value = value;
+      this.callback = callback;
+      this.userData = userData;
+    };
     int source;
     int value;
     void (*callback)(void *);
     void *userData;
 };
 
-std::vector<*uBitListener> listeners;
+std::vector<uBitListener> listeners;
 
 void callListener(MicroBitEvent event) {
   for (int i = 0; i < listeners.size(); i++) {
@@ -42,11 +48,7 @@ void callListener(MicroBitEvent event) {
 }
 
 void uBitMessageBusListen(int source, int value, void (*callback)(void *), void *userData) {
-  uBitListener *listener = new uBitListener;
-  listener.source = source;
-  listener.value = value;
-  listener.callback = callback;
-  listener.userData = userData;
+  uBitListener *listener = new uBitListener(source, value, callback, userData);
   listeners.push_back(listener);
   uBit.messageBus.listen(source, value, callListener);
 }
