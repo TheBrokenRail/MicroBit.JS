@@ -40,7 +40,7 @@ class uBitListener {
 std::vector<uBitListener> listeners;
 
 void callListener(MicroBitEvent event) {
-  for (int i = 0; i < listeners.size(); i++) {
+  for (unsigned int i = 0; i < listeners.size(); i++) {
     if (event.source == listeners[i].source && event.value == listeners[i].value) {
       listeners[i].callback(listeners[i].userData);
     }
