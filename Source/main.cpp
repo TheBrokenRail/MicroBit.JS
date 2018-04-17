@@ -31,7 +31,7 @@ class uBitListener {
     void *userData;
 };
 
-std::vector<uBitListener> listeners;
+std::vector<*uBitListener> listeners;
 
 void callListener(MicroBitEvent event) {
   for (int i = 0; i < listeners.size(); i++) {
@@ -42,13 +42,13 @@ void callListener(MicroBitEvent event) {
 }
 
 void uBitMessageBusListen(int source, int value, void (*callback)(void *), void *userData) {
-  uBitListener listener = new uBitListener;
+  uBitListener *listener = new uBitListener;
   listener.source = source;
   listener.value = value;
   listener.callback = callback;
   listener.userData = userData;
   listeners.push_back(listener);
-  uBit.messageBus.listen(item, type, callListener);
+  uBit.messageBus.listen(source, value, callListener);
 }
 
 void *ffiResolver(void *handle, const char *name) {
