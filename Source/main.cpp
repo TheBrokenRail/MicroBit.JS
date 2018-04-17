@@ -7,7 +7,7 @@
 MicroBit uBit;
 
 void uBitDisplayScroll(char *x) {
-  uBit.display.scroll(x);
+  uBit.display.scroll
 }
 
 void uBitSleep(int x) {
@@ -19,7 +19,7 @@ int uBitSerialSend(char *x) {
 }
 
 char *uBitSerialRead(int x) {
-  return uBit.serial.read(x).toCharArray();
+  return (char *)uBit.serial.read(x).toCharArray();
 }
 
 void uBitMessageBusListen(int item, int type, void (*callback)(MicroBitEvent)) {
