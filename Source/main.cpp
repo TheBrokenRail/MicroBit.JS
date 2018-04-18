@@ -121,6 +121,7 @@ getMJS = undefined;
 int main() {
   // Initialise the micro:bit runtime.
   uBit.init();
+  uBit.display.setDisplayMode(DISPLAY_MODE_GREYSCALE);
 
   struct mjs *mjs = mjs_create();
   mjs_set_ffi_resolver(mjs, ffiResolver);
