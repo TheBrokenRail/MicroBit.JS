@@ -12,11 +12,9 @@ cp mjs/mjs.h Source
 
 tput setaf 3; tput bold; echo "Installing Yotta"
 pip install --user yotta
-tput setaf 3; tput bold; echo "Creating Build Directory"
-mkdir Build
 tput setaf 3; tput bold; echo "Setting Yotta Target"
 yotta target bbc-microbit-classic-gcc
 tput setaf 3; tput bold; echo "Building Project"
 yotta build
 tput setaf 3; tput bold; echo "Copying Output"
-cp -r build/* Build
+cp build/bbc-microbit-classic-gcc/Source/microbit-js-combined.hex GH-Pages/microbit-js.hex 
