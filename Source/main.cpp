@@ -2,7 +2,7 @@
 #include <vector>
 #include <cstring>
 #include "MicroBit.h"
-#include "include/mjs.h"
+#include "mjs.h"
 #include "JSSource.h"
 
 MicroBit uBit;
