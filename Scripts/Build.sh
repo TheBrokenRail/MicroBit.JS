@@ -19,4 +19,4 @@ mkdir Build
 tput setaf 3; tput bold; echo "Building Project"
 yotta build
 tput setaf 3; tput bold; echo "Copying Output to GH-Pages"
-cp build/bbc-microbit-classic-gcc/Source/MicroBit-JS-combined.hex Build
+cp build/bbc-microbit-classic-gcc/Source/microbit-js-combined.hex Build/MicroBit.JS.hex
