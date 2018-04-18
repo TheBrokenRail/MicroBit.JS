@@ -15,6 +15,10 @@ void uBitDisplayPrint(char *x) {
   uBit.display.print(x);
 }
 
+void uBitDisplayClear() {
+  uBit.display.clear();
+}
+
 void uBitDisplayImageSetPixelValue(int x, int y, int alpha) {
   uBit.display.image.setPixelValue(x, y, alpha);
 }
@@ -68,6 +72,9 @@ void *ffiResolver(void *handle, const char *name) {
   if (strcmp(name, "displayPrint") == 0) {
     return (void *)uBitDisplayPrint;
   }
+  if (strcmp(name, "displayClear") == 0) {
+    return (void *)uBitDisplayClear;
+  }
   if (strcmp(name, "displayImageSetPixelValue") == 0) {
     return (void *)uBitDisplayImageSetPixelValue;
   }
@@ -91,6 +98,7 @@ std::string initJS = R"~~~~(let uBit = {
   display: {
     scroll: ffi('void displayScroll(char*)'),
     print: ffi('void displayPrint(char*)'),
+    clear: ffi('void displayClear()'),
     image: {
       setPixelValue: ffi('void displayImagePixelValue(int, int, int)')
     }
