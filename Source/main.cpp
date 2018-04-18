@@ -11,6 +11,14 @@ void uBitDisplayScroll(char *x) {
   uBit.display.scroll(x);
 }
 
+void uBitDisplayPrint(char *x) {
+  uBit.display.print(x);
+}
+
+void uBitDisplayImageSetPixelValue(int x, int y, int alpha) {
+  uBit.display.image.setPixelValue(x, y, alpha);
+}
+
 void uBitSleep(int x) {
   uBit.sleep(x);
 }
@@ -57,6 +65,12 @@ void *ffiResolver(void *handle, const char *name) {
   if (strcmp(name, "displayScroll") == 0) {
     return (void *)uBitDisplayScroll;
   }
+  if (strcmp(name, "displayPrint") == 0) {
+    return (void *)uBitDisplayPrint;
+  }
+  if (strcmp(name, "displayImageSetPixelValue") == 0) {
+    return (void *)uBitDisplayImageSetPixelValue;
+  }
   if (strcmp(name, "sleep") == 0) {
     return (void *)uBitSleep;
   }
@@ -75,7 +89,11 @@ void *ffiResolver(void *handle, const char *name) {
 std::string initJS = R"~~~~(let uBit = {
   sleep: ffi('void sleep(int)'),
   display: {
-    scroll: ffi('void displayScroll(char*)')
+    scroll: ffi('void displayScroll(char*)'),
+    print: ffi('void displayPrint(char*)'),
+    image: {
+      setPixelValue: ffi('void displayImagePixelValue(int, int, int)')
+    }
   },
   serial: {
     send: ffi('int serialSend(char*)'),
