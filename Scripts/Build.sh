@@ -14,13 +14,9 @@ tput setaf 3; tput bold; echo "Installing Yotta"
 pip install --user yotta
 tput setaf 3; tput bold; echo "Creating Build Directory"
 mkdir Build
-tput setaf 3; tput bold; echo "Setting Yotta Target for BBC MicroBit"
+tput setaf 3; tput bold; echo "Setting Yotta Target"
 yotta target bbc-microbit-classic-gcc
-tput setaf 3; tput bold; echo "Building Project for BBC MicroBit"
-yotta build
-tput setaf 3; tput bold; echo "Setting Yotta Target for Linux"
-yotta target x86-linux-native
-tput setaf 3; tput bold; echo "Building Project for BBC Linux"
+tput setaf 3; tput bold; echo "Building Project"
 yotta build
 tput setaf 3; tput bold; echo "Copying Output"
 cp -r build/* Build
