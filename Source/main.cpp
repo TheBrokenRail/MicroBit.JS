@@ -126,18 +126,19 @@ int main() {
   uBit.init();
   uBit.display.setDisplayMode(DISPLAY_MODE_GREYSCALE);
 
-  uBit.serial.printf("Create\n");
+  uBit.serial.printf("Create, ");
   mjsObj = mjs_create();
-  uBit.serial.printf("FFI\n");
+  uBit.serial.printf("FFI, ");
   mjs_set_ffi_resolver(mjsObj, ffiResolver);
-  uBit.serial.printf("Execute\n");
+  uBit.serial.printf("JS, '");
+  uBit.serial.printf(strcat((char *)initJS.c_str(), jsSource.c_str()));
+  uBit.serial.printf("', Execute, ");
   mjs_err_t err = mjs_exec(mjsObj, strcat((char *)initJS.c_str(), jsSource.c_str()), NULL);
   if (err) {
     const char *errStr = mjs_strerror(mjsObj, err);
     uBit.serial.printf(errStr);
-    uBit.display.scroll(errStr);
   }
-  uBit.serial.printf("Done\n");
+  uBit.serial.printf("Done");
 
   // If main exits, there may still be other fibers running or registered event handlers etc.
   // Simply release this fiber, which will mean we enter the scheduler. Worse case, we then
