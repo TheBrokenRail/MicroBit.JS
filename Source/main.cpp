@@ -1,7 +1,6 @@
 #include <string>
 #include <vector>
 #include <cstring>
-#include <exception>
 #include "MicroBit.h"
 #include "mjs.h"
 #include "JSSource.h"
@@ -126,17 +125,13 @@ int main() {
   uBit.display.setDisplayMode(DISPLAY_MODE_GREYSCALE);
   uBit.serial.printf("Ready\n");
 
-  try {
-    struct mjs *mjsObj = mjs_create();
-    mjs_set_ffi_resolver(mjsObj, ffiResolver);
-    mjs_err_t err = mjs_exec(mjsObj, strcat((char *)initJS.c_str(), jsSource.c_str()), NULL);
-    if (err) {
-      const char *errStr = mjs_strerror(mjsObj, err);
-      uBit.serial.printf(errStr);
-      uBit.display.scroll(errStr);
-    }
-  } catch (std::exception& e) {
-    uBit.serial.printf(e.what());
+  struct mjs *mjsObj = mjs_create();
+  mjs_set_ffi_resolver(mjsObj, ffiResolver);
+  mjs_err_t err = mjs_exec(mjsObj, strcat((char *)initJS.c_str(), jsSource.c_str()), NULL);
+  if (err) {
+    const char *errStr = mjs_strerror(mjsObj, err);
+    uBit.serial.printf(errStr);
+    uBit.display.scroll(errStr);
   }
 
   // If main exits, there may still be other fibers running or registered event handlers etc.
