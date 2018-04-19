@@ -123,7 +123,7 @@ int main() {
   // Initialise the micro:bit runtime.
   uBit.init();
   uBit.display.setDisplayMode(DISPLAY_MODE_GREYSCALE);
-  uBit.serial.send('Ready');
+  uBit.serial.printf("Ready");
 
   struct mjs *mjsObj = mjs_create();
   mjs_set_ffi_resolver(mjsObj, ffiResolver);
