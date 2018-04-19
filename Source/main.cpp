@@ -119,13 +119,15 @@ getMJS = undefined;
 uBit.display.scroll('Ready');
 )~~~~";
 
+mjs *mjsObj;
+
 int main() {
   // Initialise the micro:bit runtime.
   uBit.init();
   uBit.display.setDisplayMode(DISPLAY_MODE_GREYSCALE);
 
   uBit.serial.printf("Create\n");
-  mjs *mjsObj = mjs_create();
+  mjsObj = mjs_create();
   uBit.serial.printf("FFI\n");
   mjs_set_ffi_resolver(mjsObj, ffiResolver);
   uBit.serial.printf("Execute\n");
