@@ -27,8 +27,8 @@ void uBitSleep(int x) {
   uBit.sleep(x);
 }
 
-int uBitSerialSend(char *x) {
-  return uBit.serial.send(x);
+void uBitSerialPrintf(char *x) {
+  uBit.serial.printf(x);
 }
 
 char *uBitSerialRead(int x) {
@@ -81,8 +81,8 @@ void *ffiResolver(void *handle, const char *name) {
   if (strcmp(name, "sleep") == 0) {
     return (void *)uBitSleep;
   }
-  if (strcmp(name, "serialSend") == 0) {
-    return (void *)uBitSerialSend;
+  if (strcmp(name, "serialPrintf") == 0) {
+    return (void *)uBitSerialPrintf;
   }
   if (strcmp(name, "serialRead") == 0) {
     return (void *)uBitSerialRead;
@@ -104,7 +104,7 @@ std::string initJS = R"~~~~(let uBit = {
     }
   },
   serial: {
-    send: ffi('int serialSend(char*)'),
+    printf: ffi('void serialPrintf(char*)'),
     read: ffi('char* serialRead(int)')
   },
   messageBus: {
@@ -123,14 +123,14 @@ int main() {
   // Initialise the micro:bit runtime.
   uBit.init();
   uBit.display.setDisplayMode(DISPLAY_MODE_GREYSCALE);
-  uBit.serial.printf("Ready");
+  uBit.serial.printf("Ready\n");
 
   struct mjs *mjsObj = mjs_create();
   mjs_set_ffi_resolver(mjsObj, ffiResolver);
   mjs_err_t err = mjs_exec(mjsObj, strcat((char *)initJS.c_str(), jsSource.c_str()), NULL);
   if (err) {
     const char *errStr = mjs_strerror(mjsObj, err);
-    uBit.serial.send(errStr);
+    uBit.serial.printf(errStr);
     uBit.display.scroll(errStr);
   }
 
