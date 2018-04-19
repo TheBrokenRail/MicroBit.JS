@@ -123,16 +123,19 @@ int main() {
   // Initialise the micro:bit runtime.
   uBit.init();
   uBit.display.setDisplayMode(DISPLAY_MODE_GREYSCALE);
-  uBit.serial.printf("Ready\n");
 
-  struct mjs *mjsObj = mjs_create();
+  uBit.serial.printf("Create\n");
+  mjs *mjsObj = mjs_create();
+  uBit.serial.printf("FFI\n");
   mjs_set_ffi_resolver(mjsObj, ffiResolver);
+  uBit.serial.printf("Execute\n");
   mjs_err_t err = mjs_exec(mjsObj, strcat((char *)initJS.c_str(), jsSource.c_str()), NULL);
   if (err) {
     const char *errStr = mjs_strerror(mjsObj, err);
     uBit.serial.printf(errStr);
     uBit.display.scroll(errStr);
   }
+  uBit.serial.printf("Done\n");
 
   // If main exits, there may still be other fibers running or registered event handlers etc.
   // Simply release this fiber, which will mean we enter the scheduler. Worse case, we then
