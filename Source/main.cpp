@@ -69,7 +69,7 @@ void uBitMessageBusListen(int source, int value, void (*callback)(void *), void 
 void eval(char *js) {
   mjs_err_t err = mjs_exec(mjsObj, js, NULL);
   if (err) {
-    const char *errStr = mjs_strerror(mjs, err);
+    const char *errStr = mjs_strerror(mjsObj, err);
     uBit.serial.send(errStr);
   }
 }
