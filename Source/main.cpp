@@ -71,6 +71,7 @@ void eval(char *js) {
   if (err) {
     const char *errStr = mjs_strerror(mjsObj, err);
     uBit.serial.send(errStr);
+    ubit.display.print("X");
   }
 }
 
@@ -133,7 +134,7 @@ getMJS = undefined;
 int main() {
   // Initialise the micro:bit runtime.
   uBit.init();
-  // uBit.display.setDisplayMode(DISPLAY_MODE_GREYSCALE);
+  uBit.display.setDisplayMode(DISPLAY_MODE_GREYSCALE);
 
   mjs_set_ffi_resolver(mjsObj, ffiResolver);
   eval(strcat((char *)initJS.c_str(), jsSource.c_str()));
