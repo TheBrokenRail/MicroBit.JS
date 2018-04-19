@@ -6,7 +6,7 @@
 #include "JSSource.h"
 
 MicroBit uBit;
-struct mjs *mjs = mjs_create();
+struct mjs *mjsObj = mjs_create();
 
 void uBitDisplayScroll(char *x) {
   uBit.display.scroll(x);
@@ -67,7 +67,7 @@ void uBitMessageBusListen(int source, int value, void (*callback)(void *), void 
 }
 
 void eval(char *js) {
-  mjs_err_t err = mjs_exec(mjs, js, NULL);
+  mjs_err_t err = mjs_exec(mjsObj, js, NULL);
   if (err) {
     const char *errStr = mjs_strerror(mjs, err);
     uBit.serial.send(errStr);
@@ -133,9 +133,9 @@ getMJS = undefined;
 int main() {
   // Initialise the micro:bit runtime.
   uBit.init();
-  uBit.display.setDisplayMode(DISPLAY_MODE_GREYSCALE);
+  // uBit.display.setDisplayMode(DISPLAY_MODE_GREYSCALE);
 
-  mjs_set_ffi_resolver(mjs, ffiResolver);
+  mjs_set_ffi_resolver(mjsObj, ffiResolver);
   eval(strcat((char *)initJS.c_str(), jsSource.c_str()));
 
   // If main exits, there may still be other fibers running or registered event handlers etc.
