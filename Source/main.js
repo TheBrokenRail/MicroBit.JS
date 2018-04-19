@@ -1,1 +1,1 @@
-uBit.display.scroll('1234');
+uBit.display.print('A');
