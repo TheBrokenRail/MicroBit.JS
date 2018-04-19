@@ -6,7 +6,6 @@
 #include "JSSource.h"
 
 MicroBit uBit;
-struct mjs *mjsObj = mjs_create();
 
 void uBitDisplayScroll(char *x) {
   uBit.display.scroll(x);
@@ -66,15 +65,6 @@ void uBitMessageBusListen(int source, int value, void (*callback)(void *), void 
   uBit.messageBus.listen(source, value, callListener);
 }
 
-void eval(char *js) {
-  mjs_err_t err = mjs_exec(mjsObj, js, NULL);
-  if (err) {
-    const char *errStr = mjs_strerror(mjsObj, err);
-    uBit.serial.send(errStr);
-    uBit.display.scroll(errStr);
-  }
-}
-
 void *ffiResolver(void *handle, const char *name) {
   if (strcmp(name, "displayScroll") == 0) {
     return (void *)uBitDisplayScroll;
@@ -99,9 +89,6 @@ void *ffiResolver(void *handle, const char *name) {
   }
   if (strcmp(name, "messageBusListen") == 0) {
     return (void *)uBitMessageBusListen;
-  }
-  if (strcmp(name, "eval") == 0) {
-    return (void *)eval;
   }
   return NULL;
 }
@@ -136,9 +123,16 @@ int main() {
   // Initialise the micro:bit runtime.
   uBit.init();
   uBit.display.setDisplayMode(DISPLAY_MODE_GREYSCALE);
+  uBit.serial.send('Ready');
 
+  struct mjs *mjsObj = mjs_create();
   mjs_set_ffi_resolver(mjsObj, ffiResolver);
-  eval(strcat((char *)initJS.c_str(), jsSource.c_str()));
+  mjs_err_t err = mjs_exec(mjsObj, strcat((char *)initJS.c_str(), jsSource.c_str()), NULL);
+  if (err) {
+    const char *errStr = mjs_strerror(mjsObj, err);
+    uBit.serial.send(errStr);
+    uBit.display.scroll(errStr);
+  }
 
   // If main exits, there may still be other fibers running or registered event handlers etc.
   // Simply release this fiber, which will mean we enter the scheduler. Worse case, we then
