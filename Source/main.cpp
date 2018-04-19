@@ -131,12 +131,12 @@ int main() {
   uBit.serial.printf("FFI, ");
   mjs_set_ffi_resolver(mjsObj, ffiResolver);
   uBit.serial.printf("JS, '");
-  char *jsStr = "";
+  std::string jsStr = "";
   jsStr.append(initJS);
   jsStr.append(jsSource);
   uBit.serial.printf(jsStr);
   uBit.serial.printf("', Execute, ");
-  mjs_err_t err = mjs_exec(mjsObj, jsStr, NULL);
+  mjs_err_t err = mjs_exec(mjsObj, jsStr.c_str(), NULL);
   if (err) {
     const char *errStr = mjs_strerror(mjsObj, err);
     uBit.serial.printf(errStr);
