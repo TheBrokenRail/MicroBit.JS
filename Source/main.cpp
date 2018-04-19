@@ -71,7 +71,7 @@ void eval(char *js) {
   if (err) {
     const char *errStr = mjs_strerror(mjsObj, err);
     uBit.serial.send(errStr);
-    ubit.display.print("X");
+    uBit.display.scroll(errStr);
   }
 }
 
