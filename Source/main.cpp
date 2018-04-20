@@ -104,7 +104,7 @@ int main() {
   mjs_set_ffi_resolver(mjsObj, ffiResolver);
   uBit.serial.printf("Execute, ");
 
-  mjs_err_t err = mjs_exec(mjsObj, jsSource.c_str(), NULL);
+  mjs_err_t err = mjs_exec(mjsObj, jsSource, NULL);
   if (err) {
     const char *errStr = mjs_strerror(mjsObj, err);
     uBit.serial.printf(errStr);
