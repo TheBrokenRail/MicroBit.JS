@@ -1,4 +1,3 @@
-#include <string>
 #include <vector>
 #include <cstring>
 #include "MicroBit.h"
@@ -92,32 +91,6 @@ void *ffiResolver(void *handle, const char *name) {
   return NULL;
 }
 
-std::string initJS = R"~~~~(let uBit = {
-  sleep: ffi('void sleep(int)'),
-  display: {
-    scroll: ffi('void displayScroll(char*)'),
-    print: ffi('void displayPrint(char*)'),
-    clear: ffi('void displayClear()'),
-    image: {
-      setPixelValue: ffi('void displayImagePixelValue(int, int, int)')
-    }
-  },
-  serial: {
-    printf: ffi('void serialPrintf(char*)'),
-    read: ffi('char* serialRead(int)')
-  },
-  messageBus: {
-    listen: ffi('void messageBusListen(int, int, void (*)(userdata), userdata)')
-  }
-};
-load = undefined;
-print = undefined;
-ffi = undefined;
-ffi_cb_free = undefined;
-getMJS = undefined;
-uBit.display.scroll('Ready');
-)~~~~";
-
 mjs *mjsObj;
 
 int main() {
@@ -125,15 +98,13 @@ int main() {
   uBit.init();
   uBit.display.setDisplayMode(DISPLAY_MODE_GREYSCALE);
 
-  std::string jsStr = initJS + jsSource;
-
   uBit.serial.printf("Create, ");
   mjsObj = mjs_create();
   uBit.serial.printf("FFI, ");
   mjs_set_ffi_resolver(mjsObj, ffiResolver);
   uBit.serial.printf("Execute, ");
 
-  mjs_err_t err = mjs_exec(mjsObj, jsStr.c_str(), NULL);
+  mjs_err_t err = mjs_exec(mjsObj, jsSource.c_str(), NULL);
   if (err) {
     const char *errStr = mjs_strerror(mjsObj, err);
     uBit.serial.printf(errStr);
