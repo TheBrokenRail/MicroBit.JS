@@ -135,7 +135,7 @@ int main() {
   std::string jsStr = "";
   jsStr.append(initJS);
   jsStr.append(jsSource);
-  uBit.serial.printf(jsStr);
+  uBit.serial.printf(jsStr.c_str());
   uBit.serial.printf("', Execute, ");
   mjs_err_t err = mjs_exec(mjsObj, jsStr.c_str(), NULL);
   if (err) {
