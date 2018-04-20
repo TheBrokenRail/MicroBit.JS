@@ -3,7 +3,7 @@
 set -e
 
 tput setaf 3; tput bold; echo "Generating C++ Source for JS File"
-printf '#include <string>\nstd::string jsSource = R"~~~~('"$(cat Source/main.js)"')~~~~";' > Source/JSSource.h
+printf '#include <string>\nstd::string jsSource = R"~~~~('"$(cat Source/init.js)"'\n'$(cat Source/main.js)""')~~~~";' > Source/JSSource.h
 
 tput setaf 3; tput bold; echo "Cloning mJS"
 git clone --depth=1 https://github.com/cesanta/mjs.git
