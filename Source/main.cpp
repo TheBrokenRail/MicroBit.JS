@@ -102,6 +102,8 @@ int main() {
   mjsObj = mjs_create();
   uBit.serial.printf("FFI, ");
   mjs_set_ffi_resolver(mjsObj, ffiResolver);
+  uBit.serial.printf("JS, ");
+  uBit.serial.printf(jsSource);
   uBit.serial.printf("Execute, ");
 
   mjs_err_t err = mjs_exec(mjsObj, jsSource, NULL);
