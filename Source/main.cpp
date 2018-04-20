@@ -93,7 +93,7 @@ void *ffiResolver(void *handle, const char *name) {
   return NULL;
 }
 
-std::string jsStr = R"~~~~(let uBit = {
+std::string initJS = R"~~~~(let uBit = {
   sleep: ffi('void sleep(int)'),
   display: {
     scroll: ffi('void displayScroll(char*)'),
@@ -117,7 +117,7 @@ ffi = undefined;
 ffi_cb_free = undefined;
 getMJS = undefined;
 uBit.display.scroll('Ready');
-)~~~~" + jsSource;
+)~~~~";
 
 mjs *mjsObj;
 
@@ -125,6 +125,10 @@ int main() {
   // Initialise the micro:bit runtime.
   uBit.init();
   uBit.display.setDisplayMode(DISPLAY_MODE_GREYSCALE);
+
+  uBit.serial.printf(initJS.c_str());
+  
+  std::string jsStr = initJS = jsSource;
 
   uBit.serial.printf("Create, ");
   mjsObj = mjs_create();
