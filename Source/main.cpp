@@ -80,8 +80,7 @@ void *ffiResolver(void *handle, const char *name) {
   }
   if (strcmp(name, "sleep") == 0) {
     return (void *)uBitSleep;
-  }
-  if (strcmp(name, "serialPrintf") == 0) {
+  }  if (strcmp(name, "serialPrintf") == 0) {
     return (void *)uBitSerialPrintf;
   }
   if (strcmp(name, "serialRead") == 0) {
@@ -128,7 +127,7 @@ int main() {
 
   uBit.serial.printf(initJS.c_str());
   
-  std::string jsStr = initJS = jsSource;
+  std::string jsStr = initJS + jsSource;
 
   uBit.serial.printf("Create, ");
   mjsObj = mjs_create();
