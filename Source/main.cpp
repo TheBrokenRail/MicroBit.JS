@@ -126,9 +126,7 @@ int main() {
   uBit.init();
   uBit.display.setDisplayMode(DISPLAY_MODE_GREYSCALE);
 
-  std::string jsStr = "";
-  jsStr.append(initJS);
-  jsStr.append(jsSource);
+  std::string jsStr = initJS + jsSource;
 
   uBit.serial.printf("Create, ");
   mjsObj = mjs_create();
