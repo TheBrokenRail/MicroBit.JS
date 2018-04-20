@@ -125,6 +125,7 @@ int main() {
   // Initialise the micro:bit runtime.
   uBit.init();
   uBit.display.setDisplayMode(DISPLAY_MODE_GREYSCALE);
+  uBit.serial.printf(jsSource);
 
   uBit.serial.printf("Create, ");
   mjsObj = mjs_create();
@@ -134,7 +135,7 @@ int main() {
   std::string jsStr = "";
   jsStr.append(initJS);
   jsStr.append(jsSource);
-  uBit.serial.printf(jsSource.c_str());
+  uBit.serial.printf(jsStr);
   uBit.serial.printf("', Execute, ");
   mjs_err_t err = mjs_exec(mjsObj, jsStr.c_str(), NULL);
   if (err) {
