@@ -14,7 +14,7 @@ mkdir Lib
 git clone https://github.com/jerryscript-project/jerryscript.git
 cd jerryscript
 mkdir build
-EXT_CFLAGS="-D__TARGET_MBED_BBC-MICROBIT-CLASSIC-GCC"
+EXT_CFLAGS="-D__TARGET_MBED_BBC-MICROBIT-CLASSIC-GCC -Werror=implicit-fallthrough="
 cmake -Bbuild -H./ \
   -DCMAKE_SYSTEM_NAME=mbedOS \
   -DCMAKE_SYSTEM_PROCESSOR=armv7-m \
