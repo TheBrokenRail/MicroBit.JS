@@ -19,7 +19,7 @@ export CC=/usr/bin/arm-none-eabi-gcc
 cmake -Bbuild -H./ \
   -DCMAKE_SYSTEM_NAME=mbedOS \
   -DCMAKE_SYSTEM_PROCESSOR=armv7-m \
-  #-DCMAKE_C_COMPILER_WORKS=TRUE \
+  -DCMAKE_C_COMPILER_WORKS=TRUE \
   -DENABLE_LTO=OFF \
   -DENABLE_ALL_IN_ONE=OFF \
   -DJERRY_LIBC=OFF \
