@@ -14,11 +14,11 @@ mkdir Lib
 git clone https://github.com/jerryscript-project/jerryscript.git
 cd jerryscript
 mkdir build
-EXT_CFLAGS='-D__TARGET_MBED_BBC-MICROBIT-CLASSIC-GCC -Werror=implicit-fallthrough='
+EXT_CFLAGS='-D__TARGET_MBED_BBC-MICROBIT-CLASSIC-GCC'
+export CC=/usr/bin/arm-none-eabi-gcc
 cmake -Bbuild -H./ \
   -DCMAKE_SYSTEM_NAME=mbedOS \
   -DCMAKE_SYSTEM_PROCESSOR=armv7-m \
-  -DCMAKE_C_COMPILER=arm-none-eabi-gcc \
   -DCMAKE_C_COMPILER_WORKS=TRUE \
   -DENABLE_LTO=OFF \
   -DENABLE_ALL_IN_ONE=OFF \
