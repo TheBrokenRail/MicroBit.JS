@@ -1,0 +1,7 @@
+set(LJCORE ${CMAKE_CURRENT_LIST_DIR}/../jerryscript/)
+include_directories(${LJCORE})
+set(LJPATH ${CMAKE_CURRENT_LIST_DIR}/../Lib)
+set(LJFILES "")
+set(LJFILES ${LJFILES} ${LJPATH}/libjerry-libm.a)
+set(LJFILES ${LJFILES} ${LJPATH}/libjerry-core.a)
+target_link_libraries(microbit-js ${LJFILES})
