@@ -14,10 +14,10 @@ mkdir Lib
 git clone https://github.com/jerryscript-project/jerryscript.git
 cd jerryscript
 mkdir build
-EXT_CFLAGS=-D__TARGET_MBED_BBC-MICROBIT-CLASSIC-GCC -mlittle-endian -mthumb -mcpu=cortex-m4 -Wno-error=format=
+EXT_CFLAGS=-D__TARGET_MBED_BBC-MICROBIT-CLASSIC-GCC -Wno-error=format=
 cmake -Bbuild -H./ \
   -DCMAKE_SYSTEM_NAME=Mbed \
-	-DCMAKE_SYSTEM_PROCESSOR=armv7l-hf \
+  -DCMAKE_SYSTEM_PROCESSOR=armv7l-hf \
   -DCMAKE_C_COMPILER=arm-none-eabi-gcc \
   -DCMAKE_C_COMPILER_WORKS=TRUE \
   -DENABLE_LTO=OFF \
