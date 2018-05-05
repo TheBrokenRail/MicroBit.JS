@@ -14,7 +14,7 @@ mkdir Lib
 git clone https://github.com/jerryscript-project/jerryscript.git
 cd jerryscript
 mkdir build
-EXT_CFLAGS=-D__TARGET_MBED_BBC-MICROBIT-CLASSIC-GCC -Wno-error=format=
+EXT_CFLAGS="-D__TARGET_MBED_BBC-MICROBIT-CLASSIC-GCC -Wno-error=format="
 cmake -Bbuild -H./ \
   -DCMAKE_SYSTEM_NAME=Mbed \
   -DCMAKE_SYSTEM_PROCESSOR=armv7l-hf \
@@ -26,8 +26,8 @@ cmake -Bbuild -H./ \
   -DJERRY_CMDLINE=OFF \
   -DEXTERNAL_COMPILE_FLAGS="$EXT_CFLAGS" \
   -DMEM_HEAP_SIZE_KB=16
-make -C$(BUILD_DIR) jerry-core
-make -C$(BUILD_DIR) jerry-libm
+make -Cbuild jerry-core
+make -Cbuild jerry-libm
 cp build/lib/. ../Lib
 cd ../
 dir Lib
