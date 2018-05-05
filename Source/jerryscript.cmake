@@ -1,5 +1,6 @@
 set(LJCORE ${CMAKE_CURRENT_LIST_DIR}/../jerryscript/)
 include_directories(${LJCORE})
+message(${CMAKE_C_FLAGS})
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Werror=implicit-fallthrough=")
 set(LJPATH ${CMAKE_CURRENT_LIST_DIR}/../Lib)
 set(LJFILES "")
