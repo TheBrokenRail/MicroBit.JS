@@ -28,7 +28,9 @@ cmake -Bbuild -H./ \
   -DMEM_HEAP_SIZE_KB=16
 make -Cbuild jerry-core
 make -Cbuild jerry-libm
-cp build/lib/. ../Lib
+dir build
+dir build/lib
+cp -r build/lib/. ../Lib
 cd ../
 dir Lib
 
