@@ -14,7 +14,8 @@ mkdir Lib
 git clone https://github.com/jerryscript-project/jerryscript.git
 cd jerryscript
 mkdir build
-EXT_CFLAGS='-D__TARGET_MBED_BBC-MICROBIT-CLASSIC-GCC -Wno-implicit-fallthrough'
+EXT_CFLAGS='-D__TARGET_MBED_BBC-MICROBIT-CLASSIC-GCC'
+export CFLAGS='-Werror=implicit-fallthrough='
 cmake -Bbuild -H./ \
   -DCMAKE_SYSTEM_NAME=Mbed \
   -DCMAKE_SYSTEM_PROCESSOR=armv7-m \
@@ -28,11 +29,8 @@ cmake -Bbuild -H./ \
   -DMEM_HEAP_SIZE_KB=16
 make -Cbuild jerry-core
 make -Cbuild jerry-libm
-dir build
-dir build/lib
 cp -r build/lib/. ../Lib
 cd ../
-dir Lib
 
 tput setaf 3; tput bold; echo "Installing Yotta"
 pip install --user yotta
