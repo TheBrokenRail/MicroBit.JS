@@ -37,9 +37,6 @@ make -Cbuild jerry-libm
 cp -r build/lib/. ../Lib
 dir ../Lib
 cd ../
-mkdir jerryscript-include
-cp -r jerryscript/jerry-core/include/. jerryscript-include
-rm jerryscript
 
 tput setaf 3; tput bold; echo "Building Project"
 VERBOSE=1 yotta build
