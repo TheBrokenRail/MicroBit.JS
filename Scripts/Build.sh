@@ -15,7 +15,6 @@ git clone https://github.com/jerryscript-project/jerryscript.git
 cd jerryscript
 mkdir build
 EXT_CFLAGS='-D__TARGET_MBED_BBC-MICROBIT-CLASSIC-GCC'
-export CFLAGS='-Werror=implicit-fallthrough='
 cmake -Bbuild -H./ \
   -DCMAKE_SYSTEM_NAME=Mbed \
   -DCMAKE_SYSTEM_PROCESSOR=armv7-m \
