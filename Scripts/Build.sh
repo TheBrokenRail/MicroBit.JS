@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-#set -e
+set -e
 
 tput setaf 3; tput bold; echo "Generating C++ Source for JS File"
 printf '#include <string>\nchar *jsSource = (char *)R"~~~~('"$(cat Source/init.js)"'\n'$(cat Source/main.js)""')~~~~";' > Source/JSSource.h
@@ -37,11 +37,13 @@ make -Cbuild jerry-libm
 cp -r build/lib/. ../Lib
 dir ../Lib
 cd ../
+tput setaf 3; tput bold; echo "Cleaning Up JerryScript"
 mkdir jerryscript-include
 cp -r jerryscript/jerry-core/include/. jerryscript-include
+cp -r jerryscript/jerry-libm/include/. jerryscript-include
 rm -rf jerryscript
 
 tput setaf 3; tput bold; echo "Building Project"
 VERBOSE=1 yotta build
 tput setaf 3; tput bold; echo "Copying Output"
-#cp build/bbc-microbit-classic-gcc/Source/microbit-js-combined.hex GH-Pages/microbit-js.hex 
+cp build/bbc-microbit-classic-gcc/Source/microbit-js-combined.hex GH-Pages/microbit-js.hex 
