@@ -15,14 +15,17 @@ pip install --user yotta
 tput setaf 3; tput bold; echo "Setting Yotta Target"
 yotta target bbc-microbit-classic-gcc
 
+tput setaf 3; tput bold; echo "Installing Yotta Modules"
 yotta install
 mkdir Lib
+tput setaf 3; tput bold; echo "Cloning JerryScript"
 git clone https://github.com/jerryscript-project/jerryscript.git
 cd jerryscript
 mkdir build
 EXT_CFLAGS='-D__TARGET_MBED_BBC-MICROBIT-CLASSIC-GCC'
+tput setaf 3; tput bold; echo "Building JerryScript"
 cmake -Bbuild -H./ \
-  -DCMAKE_TOOLCHAIN_FILE=toolchain.cmake \
+  -DCMAKE_TOOLCHAIN_FILE=./toolchain.cmake \
   -DENABLE_LTO=OFF \
   -DENABLE_ALL_IN_ONE=OFF \
   -DJERRY_LIBC=OFF \
