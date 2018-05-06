@@ -15,34 +15,6 @@ pip install --user yotta
 tput setaf 3; tput bold; echo "Setting Yotta Target"
 yotta target bbc-microbit-classic-gcc
 
-tput setaf 3; tput bold; echo "Installing Yotta Modules"
-yotta install
-mkdir Lib
-tput setaf 3; tput bold; echo "Cloning JerryScript"
-git clone https://github.com/jerryscript-project/jerryscript.git
-cd jerryscript
-mkdir build
-EXT_CFLAGS='-D__TARGET_MBED_BBC-MICROBIT-CLASSIC-GCC'
-tput setaf 3; tput bold; echo "Building JerryScript"
-cmake -Bbuild -H./ \
-  -DCMAKE_TOOLCHAIN_FILE=../jerryscript-toolchain.cmake \
-  -DENABLE_LTO=OFF \
-  -DENABLE_ALL_IN_ONE=OFF \
-  -DJERRY_LIBC=OFF \
-  -DJERRY_LIBM=OFF \
-  -DJERRY_CMDLINE=OFF \
-  -DFEATURE_PROFILE=minimal \
-  -DENABLE_STRIP=OFF \
-  -DEXTERNAL_COMPILE_FLAGS="$EXT_CFLAGS" \
-  -DMEM_HEAP_SIZE_KB=16
-make -Cbuild jerry-core
-cp -r build/lib/. ../Lib
-cd ../
-tput setaf 3; tput bold; echo "Cleaning Up JerryScript"
-mkdir jerryscript-include
-cp -r jerryscript/jerry-core/include/. jerryscript-include
-rm -rf jerryscript
-
 tput setaf 3; tput bold; echo "Building Project"
 VERBOSE=1 yotta build
 tput setaf 3; tput bold; echo "Copying Output"
