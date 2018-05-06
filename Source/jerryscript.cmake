@@ -1,5 +1,5 @@
 set(LJCORE ${CMAKE_CURRENT_LIST_DIR}/../jerryscript/)
-include_directories(${LJCORE})
+include_directories(${LJCORE}/jerry-core/include/)
 set(LJPATH ${CMAKE_CURRENT_LIST_DIR}/../Lib)
 set(LJFILES "")
 set(LJFILES ${LJFILES} ${LJPATH}/jerry-libm.a)
