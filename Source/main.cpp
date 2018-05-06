@@ -2,6 +2,7 @@
 #include <cstring>
 #include "MicroBit.h"
 #include "mjs.h"
+#include "jerryscript.h"
 #include "JSSource.h"
 
 MicroBit uBit;
