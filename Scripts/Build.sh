@@ -41,7 +41,6 @@ cd ../
 tput setaf 3; tput bold; echo "Cleaning Up JerryScript"
 mkdir jerryscript-include
 cp -r jerryscript/jerry-core/include/. jerryscript-include
-cp -r jerryscript/jerry-libm/include/. jerryscript-include
 rm -rf jerryscript
 
 tput setaf 3; tput bold; echo "Building Project"
