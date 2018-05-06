@@ -2,7 +2,6 @@
 #include <cstring>
 #include "MicroBit.h"
 #include "mjs.h"
-#include "jerryscript.h"
 #include "JSSource.h"
 
 MicroBit uBit;
@@ -98,10 +97,6 @@ int main() {
   // Initialise the micro:bit runtime.
   uBit.init();
   uBit.display.setDisplayMode(DISPLAY_MODE_GREYSCALE);
-  
-  const jerry_char_t script[] = "var str = 'Hello, World!';";
-  size_t script_size = strlen((const char *)script);
-  bool ret_value = jerry_run_simple (script, script_size, JERRY_INIT_EMPTY);
 
   uBit.serial.printf("Create, ");
   mjsObj = mjs_create();
