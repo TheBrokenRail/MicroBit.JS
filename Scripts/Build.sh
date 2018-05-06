@@ -25,7 +25,7 @@ mkdir build
 EXT_CFLAGS='-D__TARGET_MBED_BBC-MICROBIT-CLASSIC-GCC'
 tput setaf 3; tput bold; echo "Building JerryScript"
 cmake -Bbuild -H./ \
-  -DCMAKE_TOOLCHAIN_FILE=./toolchain.cmake \
+  -DCMAKE_TOOLCHAIN_FILE=$(pwd)/toolchain.cmake \
   -DENABLE_LTO=OFF \
   -DENABLE_ALL_IN_ONE=OFF \
   -DJERRY_LIBC=OFF \
