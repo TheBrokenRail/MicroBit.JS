@@ -32,7 +32,7 @@ cmake -Bbuild -H./ \
   -DJERRY_CMDLINE=OFF \
   -DEXTERNAL_COMPILE_FLAGS="$EXT_CFLAGS" \
   -DMEM_HEAP_SIZE_KB=16
-VERBOSE=1 make -Cbuild jerry-core
+make -Cbuild jerry-core
 make -Cbuild jerry-libm
 cp -r build/lib/. ../Lib
 cd ../
