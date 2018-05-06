@@ -29,10 +29,13 @@ cmake -Bbuild -H./ \
   -DENABLE_LTO=OFF \
   -DENABLE_ALL_IN_ONE=OFF \
   -DJERRY_LIBC=OFF \
+  -DJERRY_LIBM=OFF \
   -DJERRY_CMDLINE=OFF \
+  -DFEATURE_PROFILE=minimal \
+  -DENABLE_STRIP=OFF \
   -DEXTERNAL_COMPILE_FLAGS="$EXT_CFLAGS" \
   -DMEM_HEAP_SIZE_KB=16
-make -Cbuild jerry-core jerry-port-default-minimal jerry-libm
+make -Cbuild jerry-core
 cp -r build/lib/. ../Lib
 cd ../
 tput setaf 3; tput bold; echo "Cleaning Up JerryScript"
