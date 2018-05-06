@@ -35,7 +35,6 @@ cmake -Bbuild -H./ \
 make -Cbuild jerry-core
 make -Cbuild jerry-libm
 cp -r build/lib/. ../Lib
-dir ../Lib
 cd ../
 tput setaf 3; tput bold; echo "Cleaning Up JerryScript"
 mkdir jerryscript-include
